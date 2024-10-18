@@ -1,0 +1,44 @@
+services:
+  nginx:
+    build: requirements/nginx/.
+    container_name: nginx
+    image: nginx
+    depends_on:
+      - wordpress
+      - mariadb
+    ports:
+      - "443:443"
+    volumes:
+      - wordpress_data:/var/www/html
+    restart: always
+  wordpress:
+    build: requirements/wordpress/.
+    container_name: wp-php
+    image: wordpress
+    depends_on:
+      - mariadb
+    volumes:
+      - wordpress_data:/var/www/html
+    restart: always
+  mariadb:
+    build: requirements/mariadb/.
+    container_name: mariadb
+    image: mariadb
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    restart: always
+
+volumes:
+  mariadb_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/egomez-g/data/mariadb_data
+      o: bind
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/egomez-g/data/wordpress_data
+      o: bind
+
