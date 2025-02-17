@@ -68,7 +68,7 @@ Si la parte obligatoria es completada sin errores, se pueden añadir las siguien
 
 1. Clonar el repositorio:
    ```bash
-   git clone https://github.com/tu-usuario/inception.git
+   git clone https://github.com/egomez-g/inception.git
    cd inception
    ```
 
